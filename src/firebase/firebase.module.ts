@@ -1,7 +1,10 @@
-import { Module } from '@nestjs/common';
-import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as admin from 'firebase-admin';
+import { Module } from '@nestjs/common';
+// Modules
+import { ConfigModule, ConfigService } from '@nestjs/config';
+// Repositories
 import { FirebaseRepository } from './firebase.repository';
+import { FirebaseUserRepository } from './firebase.user.repository';
 
 const firebaseProvider = {
   provide: 'FIREBASE_APP',
@@ -31,7 +34,7 @@ const firebaseProvider = {
 
 @Module({
   imports: [ConfigModule],
-  providers: [firebaseProvider],
-  exports: [FirebaseRepository],
+  providers: [firebaseProvider, FirebaseUserRepository, FirebaseRepository],
+  exports: [FirebaseUserRepository, FirebaseRepository],
 })
 export class FirebaseModule {}
