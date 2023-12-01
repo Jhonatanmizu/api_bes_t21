@@ -5,9 +5,10 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 // Modules
 import { GatewayModule } from './gateway/gateway.module';
+import { ConfigModule } from '@nestjs/config';
 
 @Module({
-  imports: [GatewayModule],
+  imports: [ConfigModule.forRoot({ cache: true }), GatewayModule],
   controllers: [AppController],
   providers: [AppService],
 })
